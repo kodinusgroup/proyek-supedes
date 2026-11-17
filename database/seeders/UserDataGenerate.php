@@ -8,38 +8,26 @@ use Illuminate\Database\Seeder;
 class UserDataGenerate extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
-     * @return void
+     * Akun demo — kata sandi: <nama depan>123
      */
-    public function run()
+    public function run(): void
     {
-        User::firstOrCreate([
-            'nama_terang'           => 'Hardiyanto Setyawan, S.H., M.Kom.',
-            'password'              => bcrypt('hardiyanto123'),
-            'email'                 => 'hardiyanto@supedes.co.id',
-            'email_verified_at'     => date('Y-m-d H:i:s'),
-            'jabatan'               => 'lurah',
-            'status'                => 'active',
-            // 'foto_profil'           => 'upload/avataaars.png',
-        ]);
-        User::firstOrCreate([
-            'nama_terang'           => 'Rudi Kurniawan Saputra, S.H., M.Hum.',
-            'password'              => bcrypt('rudi123'),
-            'email'                 => 'rudi@supedes.co.id',
-            'email_verified_at'     => date('Y-m-d H:i:s'),
-            'jabatan'               => 'lurah',
-            'status'                => 'active',
-            // 'foto_profil'           => 'upload/avataaras.png',
-        ]);
-        User::firstOrCreate([
-            'nama_terang'           => 'Yulia Putri Nur Anggraeni, S.Kom., M.H.',
-            'password'              => bcrypt('yulia123'),
-            'email'                 => 'yulia@supedes.co.id',
-            'email_verified_at'     => date('Y-m-d H:i:s'),
-            'jabatan'               => 'ketua_rt',
-            'status'                => 'active',
-            // 'foto_profil'           => 'upload/avataaars-1.png',
-        ]);
+        $akun = [
+            ['Hardiyanto Setyawan, S.H., M.Kom.',     'hardiyanto@supedes.co.id', 'hardiyanto123', 'lurah'],
+            ['Rudi Kurniawan Saputra, S.H., M.Hum.',  'rudi@supedes.co.id',       'rudi123',       'lurah'],
+            ['Bambang Sutrisno',                      'bambang@supedes.co.id',    'bambang123',    'ketua_rw'],
+            ['Yulia Putri Nur Anggraeni, S.Kom., M.H.', 'yulia@supedes.co.id',    'yulia123',      'ketua_rt'],
+            ['Suharto Wibisono',                      'suharto@supedes.co.id',    'suharto123',    'ketua_rt'],
+        ];
+
+        foreach ($akun as [$nama, $email, $password, $jabatan]) {
+            User::updateOrCreate(['email' => $email], [
+                'nama_terang'       => $nama,
+                'password'          => bcrypt($password),
+                'email_verified_at' => now(),
+                'jabatan'           => $jabatan,
+                'status'            => 'active',
+            ]);
+        }
     }
 }

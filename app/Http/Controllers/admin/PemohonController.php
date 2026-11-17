@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\DataPengantar;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\View;
 
 class PemohonController extends Controller
@@ -97,7 +97,7 @@ class PemohonController extends Controller
      * The PDF report print
      *
      * @package Supedes App
-     * @return  \Barryvdh\DomPDF\Facade
+     * @return  \Barryvdh\DomPDF\PDF
      */
     function cetak(DataPengantar $pengantar, $id = null) {
         $verify = $pengantar->whereId($id);
@@ -138,7 +138,7 @@ class PemohonController extends Controller
      * The PDF report download
      *
      * @package Supedes App
-     * @return  \Barryvdh\DomPDF\Facade
+     * @return  \Barryvdh\DomPDF\PDF
      */
     function download(DataPengantar $pengantar, $id = null) {
         $verify = $pengantar->whereId($id);

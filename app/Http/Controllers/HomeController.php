@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DataPenduduk;
 use App\Models\DataPengantar;
-use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -104,7 +104,7 @@ class HomeController extends Controller
      * The PDF report print
      *
      * @package Supedes App
-     * @return  \Barryvdh\DomPDF\Facade
+     * @return  \Barryvdh\DomPDF\PDF
      */
     function cetak(DataPengantar $pengantar, $id = null) {
         $verify = $pengantar->whereId($id);
@@ -145,7 +145,7 @@ class HomeController extends Controller
      * The PDF report download
      *
      * @package Supedes App
-     * @return  \Barryvdh\DomPDF\Facade
+     * @return  \Barryvdh\DomPDF\PDF
      */
     function unduh(DataPengantar $pengantar, $id = null) {
         $verify = $pengantar->whereId($id);

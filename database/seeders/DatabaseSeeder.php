@@ -3,19 +3,21 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
      *
-     * @return void
+     * Gunakan `php artisan migrate:fresh --seed` untuk mengulang dari awal.
      */
-    public function run()
+    public function run(): void
     {
-        Artisan::call('migrate:fresh');
-        $this->call(GenerateDataPenduduk::class);
-        $this->call(UserDataGenerate::class);
+        $this->call([
+            GenerateDataPenduduk::class,
+            UserDataGenerate::class,
+            DataPengantarSeeder::class,
+            KritikSaranSeeder::class,
+        ]);
     }
 }
